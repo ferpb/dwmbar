@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ "$(cat /sys/class/power_supply/BAT0/status)" = "Charging" ]
+then
+	# icon="[~~]-"
+	icon="⚡"
+else
+	# icon="[==]-"
+	icon="🔋"
+fi
+
+printf "%s %d%%" $icon $(cat /sys/class/power_supply/BAT0/capacity)

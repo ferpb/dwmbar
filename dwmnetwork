@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ $(nmcli radio wifi) = "enabled" ]
+then
+	# echo -n '>-<'
+	echo -n 📶
+else
+	# echo -n '< >'
+	echo -n no 📶
+fi

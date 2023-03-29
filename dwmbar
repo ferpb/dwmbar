@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# Este script establece la statusbar utilizando el comando
+# xsetroot. Este script est'a puesto en ~/.xinitrc para que
+# empiece a ejecutar
+
+delim="|"
+
+status() {
+	# Get the master volume
+
+	# amixer get Master
+
+	echo $delim
+
+	cat /sys/class/power_supply/BAT0/capacity
+	echo "%"
+	
+	echo $delim
+
+	echo "Ethernet"
+	
+	cat /sys/class/net/enp0s31f6/operstate
+	# cat /proc/net/wireless
+
+	echo "$delim"
+
+	date
+}
+
+# while :; do
+# 	xsetroot -name "$(status | tr '\n' ' ')"
+# 	# sleep 1m
+# 	sleep 2
+# done
+
+
+# Otra opcion es algo como:
+
+while :; do
+	TIME=$(dwmclock)
+	# DISK=$(dwmdisk)
+	NETWORK=$(dwmnetwork)
+	BATTERY=$(dwmbattery)
+	# CPU=$(dwmcpu)
+	SOUND=$(dwmsound)
+	xsetroot -name " $TIME | $SOUND | $NETWORK | $BATTERY "
+	sleep 2
+done

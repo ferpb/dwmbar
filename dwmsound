@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# percent="$(amixer get Master | tail -n1 | cut -d' ' -f6 | tr -d ' []')"
+# icon="sound"
+# printf "%s %s" $icon $percent
+
+
+# if [[ $(pactl get-sink-mute 4) == "Mute: no" ]]
+# then
+# 	volume="$(pactl get-sink-volume 4 | cut -d' ' -f6)"
+# else
+# 	# volume="M"
+# 	icon="🔊"
+# 	volume=""
+# fi
+
+volume="$(pactl get-sink-volume @DEFAULT_SINK@ | awk '/Volume/{print $5}')"
+
+if [ -z $volume ]
+then
+	echo "🔊 ERROR"
+	exit 1
+fi
+
+if [ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: no" ]
+then
+	icon="🔊"
+else
+ 	icon="🔇"
+	# echo $icon
+	# exit 0
+fi
+
+printf "%s %s" $icon $volume
