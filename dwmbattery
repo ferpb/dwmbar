@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ ! -e /sys/class/power_supply/BAT0 ]
+then
+	exit 1
+fi
+
 if [ "$(cat /sys/class/power_supply/BAT0/status)" = "Charging" ]
 then
 	# icon="[~~]-"
