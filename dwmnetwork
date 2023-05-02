@@ -3,8 +3,10 @@
 if [ $(nmcli radio wifi) = "enabled" ]
 then
 	# echo -n '>-<'
-	echo -n 📶
+	icon="📶"
 else
 	# echo -n '< >'
-	echo -n no 📶
+	icon="📶"
 fi
+
+printf "%s\n" $icon

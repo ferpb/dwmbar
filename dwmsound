@@ -27,8 +27,6 @@ then
 	icon="🔊"
 else
  	icon="🔇"
-	# echo $icon
-	# exit 0
 fi
 
-printf "%s %s" $icon $volume
+printf "%s %s\n" $icon $volume

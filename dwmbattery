@@ -14,4 +14,4 @@ else
 	icon="🔋"
 fi
 
-printf "%s %d%%" $icon $(cat /sys/class/power_supply/BAT0/capacity)
+printf "%s %d%%\n" $icon $(cat /sys/class/power_supply/BAT0/capacity)
