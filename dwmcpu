@@ -1,5 +1,7 @@
 #!/bin/bash
 
+idle="$(vmstat | tail -1 | awk '{print $15}')"
+
 icon="🖥️"
 
-printf "%s  %d%%\n" $icon $[100 - $(vmstat | tail -1 | awk '{print $15}')]
+printf "%s %d%%\n" $icon $[100 - $idle]
